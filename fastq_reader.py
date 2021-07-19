@@ -1,4 +1,4 @@
-import students.Abusagit.playground.block_reader as block_reader
+import block_reader
 
 
 def iter_fastq_file(fastq_file_name):

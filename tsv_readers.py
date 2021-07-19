@@ -1,5 +1,5 @@
 import pandas as pd
-import students.Abusagit.playground.сsv_reader as csv_reader
+import csv_reader
 
 
 class TabSeparatedData(csv_reader.SeparatedData):

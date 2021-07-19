@@ -1,4 +1,4 @@
-import students.Abusagit.playground.block_reader as block_reader
+import block_reader
 
 """
 Implements reading .fasta file format
@@ -61,7 +61,7 @@ if __name__ == '__main__':
         print(h, repr(s))
         print(len(s))
 
-    a = FastaData(path=rf"../rosalind/new")
+    a = FastaData(path=r"../rosalind/new")
     for i in a.iter_block_file(new_block_symbol='>'):
         print(i)
         print(list(a.iter_block_objects(i[1])))
