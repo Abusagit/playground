@@ -40,8 +40,8 @@ class BlockData:
 
 
 if __name__ == '__main__':
-    a = BlockData(path='../rosalind/output', file_format="fasta")
-    b = BlockData(path="../rosalind/new", file_format='fasta')
+    a = BlockData(path='/Users/darji/edusummer2021/students/Abusagit/rosalind/output', file_format="fasta")
+    b = BlockData(path="/Users/darji/edusummer2021/students/Abusagit/rosalind/new", file_format='fasta')
 
     for i in a.iter_block_file(new_block_symbol='>'):
         print(i, list(a.iter_block_objects(i[1])))

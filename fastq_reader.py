@@ -40,7 +40,7 @@ class FastqData(block_reader.BlockData):
 
 
 if __name__ == '__main__':
-    fq = FastqData(rf"../rosalind/filteredrosalind_bfil")
+    fq = FastqData(r"/Users/darji/edusummer2021/students/Abusagit/rosalind/filteredrosalind_bfil")
 
     # for header, block in fq.iter_fastaq_file():
     #     print(header)

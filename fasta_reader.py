@@ -1,4 +1,7 @@
-import block_reader
+if __name__ == '__main__':
+    import block_reader
+else:
+    from . import block_reader
 
 """
 Implements reading .fasta file format
@@ -57,11 +60,13 @@ class FastaData(block_reader.BlockData):
 
 
 if __name__ == '__main__':
-    for h, s in iter_fasta_reader(r"../rosalind/output"):
+    import os
+    print(os.getcwd())
+    for h, s in iter_fasta_reader(r"/Users/darji/edusummer2021/students/Abusagit/rosalind/output"):
         print(h, repr(s))
         print(len(s))
 
-    a = FastaData(path=r"../rosalind/new")
+    a = FastaData(path=r"/Users/darji/edusummer2021/students/Abusagit/rosalind/new")
     for i in a.iter_block_file(new_block_symbol='>'):
         print(i)
         print(list(a.iter_block_objects(i[1])))
