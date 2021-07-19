@@ -34,9 +34,9 @@ class BlockData:
         :param new_block_symbol:
         :return: sequence
         """
-        with open(self.path_format) as f_read:
-            sequence = []
-            header = 
+        # with open(self.path_format) as f_read:
+        #     sequence = []
+        #     header =
 
 
 if __name__ == '__main__':
