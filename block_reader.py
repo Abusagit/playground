@@ -1,9 +1,8 @@
 class BlockData:
-    path_string = r"{0}.{1}"  # 0 - path, 1 - format
+    # 0 - path, 1 - format
 
-    def __init__(self, path, file_format):
-        self.path = "./" if "/" not in set(path) else path
-        self.path_format = BlockData.path_string.format(*(path, file_format))
+    def __init__(self, path):
+        self.path_format = path
 
     def iter_block_objects(self, block_obj):
         yield from block_obj
@@ -40,8 +39,8 @@ class BlockData:
 
 
 if __name__ == '__main__':
-    a = BlockData(path='/Users/darji/edusummer2021/students/Abusagit/rosalind/output', file_format="fasta")
-    b = BlockData(path="/Users/darji/edusummer2021/students/Abusagit/rosalind/new", file_format='fasta')
+    a = BlockData(path='/Users/darji/edusummer2021/students/Abusagit/rosalind/output.fasta')
+    b = BlockData(path="/Users/darji/edusummer2021/students/Abusagit/rosalind/new.fasta")
 
     for i in a.iter_block_file(new_block_symbol='>'):
         print(i, list(a.iter_block_objects(i[1])))

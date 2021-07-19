@@ -49,8 +49,8 @@ def iter_fasta_reader(fasta_file_name):
 
 
 class FastaData(block_reader.BlockData):
-    def __init__(self, path, file_format="fasta"):
-        super().__init__(path, file_format=file_format)
+    def __init__(self, path):
+        super().__init__(path)
 
     def iter_block_file(self, new_block_symbol='>'):
         yield from super(FastaData, self).iter_block_file(new_block_symbol)
@@ -62,11 +62,11 @@ class FastaData(block_reader.BlockData):
 if __name__ == '__main__':
     import os
     print(os.getcwd())
-    for h, s in iter_fasta_reader(r"/Users/darji/edusummer2021/students/Abusagit/rosalind/output"):
-        print(h, repr(s))
-        print(len(s))
+    # for h, s in iter_fasta_reader(r"/Users/darji/edusummer2021/students/Abusagit/rosalind/output.fasta"):
+    #     print(h, repr(s))
+    #     print(len(s))
 
-    a = FastaData(path=r"/Users/darji/edusummer2021/students/Abusagit/rosalind/new")
+    a = FastaData(path=r"/Users/darji/edusummer2021/students/Abusagit/rosalind/new.fasta")
     for i in a.iter_block_file(new_block_symbol='>'):
         print(i)
         print(list(a.iter_block_objects(i[1])))
