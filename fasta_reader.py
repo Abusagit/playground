@@ -9,6 +9,7 @@ Implements reading .fasta file format
 
 
 def stupid_fasta_reader(fasta_file_name):
+
     """
     fasta_file_name: fasta file localisation
     """
@@ -66,7 +67,7 @@ if __name__ == '__main__':
     #     print(h, repr(s))
     #     print(len(s))
 
-    a = FastaData(path=r"/Users/darji/edusummer2021/students/Abusagit/rosalind/new.fasta")
+    a = FastaData(path=r"/Users/darji/itmo_local/edusummer2021/students/Abusagit/rosalind/new.fasta")
     for i in a.iter_block_file(new_block_symbol='>'):
         print(i)
         print(list(a.iter_block_objects(i[1])))

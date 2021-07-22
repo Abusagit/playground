@@ -16,7 +16,7 @@ class BlockData:
             block_obj = {0: f_read.readline()}
             for line in f_read:
                 if line.startswith(new_block_symbol):
-                    yield block_obj[0].strip(), (block_obj[j] for j in range(1, _i))  # header, generator
+                    yield block_obj[0].strip(), ''.join(block_obj[j] for j in range(1, _i))  # header, generator
                     _i = 1
                     block_obj.clear()
                     block_obj[0] = line
@@ -24,7 +24,7 @@ class BlockData:
                     block_obj[_i] = line.strip()
                     _i += 1
             else:
-                yield block_obj[0].strip(), (block_obj[j] for j in range(1, _i))  # header, generator
+                yield block_obj[0].strip(), ''.join(block_obj[j] for j in range(1, _i))  # header, generator
             block_obj.clear()
 
     def iter_block_file2(self, new_block_symbol):
@@ -33,17 +33,28 @@ class BlockData:
         :param new_block_symbol:
         :return: sequence
         """
-        # with open(self.path_format) as f_read:
-        #     sequence = []
-        #     header =
+        with open(self.path_format) as f_read:
+            sequence = []
+            header = f_read.readline().strip()
+            for line in f_read:
+                if line.startswith(new_block_symbol):
+                    yield header[:-1], ''.join(sequence)
+                    header = line
+                    sequence = []
+                else:
+                    sequence.append(line.strip())
+        del sequence
 
 
 if __name__ == '__main__':
-    a = BlockData(path='/Users/darji/edusummer2021/students/Abusagit/rosalind/output.fasta')
-    b = BlockData(path="/Users/darji/edusummer2021/students/Abusagit/rosalind/new.fasta")
+    a = BlockData(path="/Users/darji/itmo_local/edusummer2021/students/Abusagit/rosalind/output.fasta")
+    b = BlockData(path="/Users/darji/itmo_local/edusummer2021/students/Abusagit/rosalind/new.fasta")
+    #
+    # for i in a.iter_block_file(new_block_symbol='>'):
+    #     print(i, list(a.iter_block_objects(i[1])))
 
     for i in a.iter_block_file(new_block_symbol='>'):
-        print(i, list(a.iter_block_objects(i[1])))
+        print(list(i[1]))
 
-    for i in b.iter_block_file(new_block_symbol='>'):
-        print(i, list(a.iter_block_objects(i[1])))
+    for i in b.iter_block_file2(new_block_symbol='>'):
+        print(i)
