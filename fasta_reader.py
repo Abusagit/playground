@@ -50,8 +50,8 @@ def iter_fasta_reader(fasta_file_name):
 
 
 class FastaData(block_reader.BlockData):
-    def __init__(self, path, new_block_symbol='>'):
-        super().__init__(path, new_block_symbol)
+    def __init__(self, path):
+        super().__init__(path, new_block_symbol='>')
 
     def iter_block_file(self, new_block_symbol='>'):
         yield from super(FastaData, self).iter_block_file()
