@@ -44,6 +44,7 @@ class BlockData:
                     sequence = []
                 else:
                     sequence.append(line.strip())
+            yield header[:-1], ''.join(sequence)
         del sequence
 
 
