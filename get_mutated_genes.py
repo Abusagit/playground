@@ -1,4 +1,9 @@
-#!/home/fvelikonivcev/miniconda3/envs/bioconda/bin/python
+#!usr/bin/python
+# -*- coding: utf-8 -*-
+#
+#@created: 09.10.2021
+#@author: Fyodor Velikonivtsev
+#@contact: mirotvorez00@gmail.com
 
 
 import bisect
@@ -6,7 +11,6 @@ import io
 import os
 import sys
 import pandas as pd
-from collections import defaultdict
 import sys
 
 
@@ -17,7 +21,7 @@ pd.set_option('display.width', 1000)
 
 def read_vcf(path):
     with open(path, 'r') as f:
-        lines = tuple(l for l in f if not l.startswith('##'))
+        lines = tuple(l for l in f if not l.startswith('##')) # ignore meta information
     
     return pd.read_csv(io.StringIO(''.join(lines)), dtype={'#CHROM': str, 'POS': int, 'ID': str, 'REF': str, 'ALT': str, 'QUAL': str, 'FILTER': str, 'INFO': str}, sep='\t').rename(columns={'#CHROM': 'CHROM'})
 
@@ -25,7 +29,7 @@ def read_vcf(path):
 
 def read_annotation(annotation_path):
     gencode = pd.read_table(annotation_path, comment='#', sep='\t', names=['seqname', 'source', 'feature', 'start', 'end', 'score', 'strand', 'frame', 'attribute'])
-    gencode_genes = gencode[gencode['feature'] == 'gene'][['seqname', 'start', 'end', 'attribute']].copy().reset_index()
+    gencode_genes = gencode[gencode['feature'] == 'gene'][['seqname', 'start', 'end', 'attribute']].copy().reset_index()  # TODO get rid of copy and collect info about localization too
     gencode_genes.drop('index', axis='columns', inplace=True)
 
     return gencode_genes
