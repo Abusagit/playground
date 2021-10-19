@@ -39,7 +39,7 @@ class BlockData:
             header = f_read.readline().strip()
             for line in f_read:
                 if line.startswith(self.new_block_symbol):
-                    yield header[:-1], ''.join(sequence)
+                    yield header[:-1], ''.join(sequence
                     header = line
                     sequence = []
                 else:
